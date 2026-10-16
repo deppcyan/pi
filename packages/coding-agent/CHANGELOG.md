@@ -5,6 +5,7 @@
 ### Changed
 
 - `pi update` for installs from the pi.dev installer no longer passes `--min-release-age=0` to `npm ci`. The release lockfile pins every package, so the flag had no effect, and security scanners that block it stopped the update ([#11262](https://github.com/earendil-works/pi/issues/11262))
+- Changed provider attribution to Digen AI (`HTTP-Referer: https://agent.digen.ai`, `X-OpenRouter-Title: Digen AI`, `X-OpenRouter-Categories: cli-agent,cloud-agent,video-gen,image-gen,roleplay,entertainment,productivity`). NVIDIA NIM and OpenCode use the same name.
 
 ## [1.4.0] - 2026-10-21
 
@@ -61,7 +62,6 @@
 - Fixed an unclosed `$$` display-math block swallowing or corrupting every Markdown table after it ([#11159](https://github.com/earendil-works/pi/issues/11159))
 - Fixed Markdown bold and italic not rendering next to CJK punctuation ([#10730](https://github.com/earendil-works/pi/pull/10730) by [@theBucky](https://github.com/theBucky))
 - Fixed `@` file autocomplete returning no results for queries containing regex metacharacters such as `[` or `(` ([#10972](https://github.com/earendil-works/pi/issues/10972))
-
 ## [1.3.0] - 2026-10-15
 
 ### New Features

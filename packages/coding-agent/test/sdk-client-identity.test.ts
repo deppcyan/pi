@@ -8,12 +8,12 @@ import {
 	getAttributionHeaders,
 	type Model,
 	normalizeContext,
-	PI_ATTRIBUTION,
 	type SimpleStreamOptions,
 } from "@earendil-works/pi-ai";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { VERSION } from "../src/config.ts";
 import { AuthStorage } from "../src/core/auth-storage.ts";
+import { DIGEN_ATTRIBUTION } from "../src/core/client-identity.ts";
 import { createAgentSession } from "../src/core/sdk.ts";
 import { SessionManager } from "../src/core/session-manager.ts";
 import { SettingsManager } from "../src/core/settings-manager.ts";
@@ -139,19 +139,19 @@ describe("createAgentSession client identity", () => {
 		}
 	}
 
-	it("identifies pi with a detailed User-Agent and attribution as a CLI agent", async () => {
+	it("identifies requests with a detailed User-Agent and Digen OpenRouter attribution", async () => {
 		const model = createModel("openrouter", "https://openrouter.ai/api/v1");
 		const options = await captureOptions(model);
 
 		expect(options?.identity).toEqual({
 			userAgent: "detailed",
 			version: VERSION,
-			attribution: PI_ATTRIBUTION,
+			attribution: DIGEN_ATTRIBUTION,
 		});
 		expect(getAttributionHeaders(model, options?.identity)).toEqual({
-			"HTTP-Referer": "https://pi.dev",
-			"X-OpenRouter-Title": "pi",
-			"X-OpenRouter-Categories": "cli-agent",
+			"HTTP-Referer": "https://agent.digen.ai",
+			"X-OpenRouter-Title": "Digen AI",
+			"X-OpenRouter-Categories": "cli-agent,cloud-agent,video-gen,image-gen,roleplay,entertainment,productivity",
 		});
 	});
 
